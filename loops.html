@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="loopsStyle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loops</title>
+</head>
+<body>
+    <div id="video-background">
+  <video autoplay muted loop id="bg-video">
+    <source src="angela.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="music-player">
+  <div class="disc-container">
+    <div class="disc" id="disc"></div>
+  </div>
+  <audio id="bgMusic" controls autoplay loop>
+    <source src="openthe.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="playlist">
+    <button onclick="changeTrack('openthe.mp3')">String Theocracy</button>
+    <button onclick="changeTrack('children.mp3')">Children Of The City</button>
+    <button onclick="changeTrack('gone.mp3')">Gone Angels</button>
+  </div>
+</div>
+
+
+
+<h1>Nth Factorial, Sum and Average</h1>
+<hr>
+<div id="container">
+<label for="integer" id="display">Input integer:</label>
+<input id="integer" name="integer" type="number">
+<br><br>
+<button onclick="nthFactorial()">Nth Factorial</button>
+<button onclick="sumFirst()"> Sum of the first n numbers</button>
+<button onclick="averageFirst()">Average of first n numbers</button>
+</div>
+<br><br>
+
+<div id="container2">
+<label for="results" id="resultDisplay">Results:</label>
+<br>
+<input id="results" name="results" type="text" readonly>
+</div>
+<hr>
+
+
+<script>
+function nthFactorial()
+{
+let n = parseInt(document.getElementById("integer").value)
+if (isNaN(n) || n < 0) {
+    alert("Please enter a valid number (negative not allowed)");
+    return;
+}
+
+let i = 1, factorial = 1;
+
+while (i <= n ) {
+    factorial *= i;
+    i += 1;
+}
+
+document.getElementById("results").value = factorial;
+}
+
+
+function sumFirst()
+{
+let n = parseInt(document.getElementById("integer").value)
+if (isNaN(n) || n < 0) {
+alert("Please enter a valid number (negative not allowed)");
+return;
+}
+
+let sum = 0, i = 1;
+
+do {
+    sum += i;
+    i += 1;
+} while(i <= n); 
+
+document.getElementById("results").value = sum;
+
+}
+
+function averageFirst()
+{
+let n = parseInt(document.getElementById("integer").value)
+if (isNaN(n) || n < 0) {
+alert("Please enter a valid number (negative not allowed)");
+return;
+}
+
+let sum = 0;
+
+for (let i = 1; i <= n; i += 1) {
+    sum += i;
+}
+
+let average = sum / n;
+
+
+document.getElementById("results").value = average;
+
+}
+
+
+const music = document.getElementById('bgMusic');
+const disc = document.getElementById('disc');
+
+music.addEventListener('play', () => {
+    disc.style.animation = "spin 4s linear infinite";
+});
+
+music.addEventListener('pause', () => {
+    disc.style.animation = "none";
+});
+
+function changeTrack(track) {
+    music.src = track;
+    music.play();
+}
+
+
+
+
+</script>
+
+<a href="TEMPLATE.html">Go back to main page</a>
+
+
+
+
+</body>
+</html>

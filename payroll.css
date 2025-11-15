@@ -1,0 +1,236 @@
+body {
+    background: linear-gradient(180deg, #0a2f45, #1a5672, #0d1c26);
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: #e6faff;
+}
+
+/* Title = simple glowing bar */
+h1 {
+    text-align: center;
+    background: #11394d;
+    color: #c7f5ff;
+    margin: 40px;
+    padding: 15px;
+    border: 2px solid #56b6d6;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #56b6d6;
+}
+
+/* Main panel */
+#container {
+    background: rgba(10, 40, 55, 0.7);
+    border: 2px solid #4ea1c4;
+    border-radius: 15px;
+    width: 80%;
+    margin: auto;
+    padding: 15px 25px;
+    box-shadow: 0 0 10px rgba(80,170,210,0.4);
+}
+
+/* Labels */
+label {
+    font-style: italic;
+    padding: 5px;
+    display: block;
+    border: 1px dashed #3f94b5;
+    color: #d9f7ff;
+    margin-right: 500px;
+}
+
+/* Inputs */
+input {
+    border: 2px solid #3d90ac;
+    padding: 6px;
+    background: #0f2e3b;
+    color: #dffaff;
+    border-radius: 6px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 50%;
+    margin: 5px 0;
+}
+
+/* Buttons = Xenoblade blue */
+button {
+    display: block;
+    margin: 6px 0;
+    padding: 6px;
+    border-radius: 12px;
+    border: 2px solid #56b6d6;
+    background: #1b6e91;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #0e4259;
+    border-color: #7ee3ff;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #11394d;
+    border: 2px solid #4ea1c4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(80,170,210,0.4);
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid #3a8fb0;
+    padding: 12px;
+    color: #dffaff;
+}
+
+tr:hover {
+    background-color: #1a4d63;
+}
+
+/* Links */
+a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    color: #c9f5ff;
+    text-decoration: none;
+}
+
+a:hover {
+    background: #1a5674;
+}
+
+/* KEEPING YOUR UNDERTALE PROMPT EXACTLY THE SAME */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+#undertalePrompt {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#undertalePrompt .box {
+    background: black;
+    color: white;
+    border: 4px solid white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    box-shadow: 0 0 10px white;
+}
+#undertalePrompt .box button {
+    background: black;
+    color: white;
+    border: 2px solid white;
+    padding: 6px 10px;
+    margin: 10px 5px 0 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#undertalePrompt .box button:hover {
+    background: white;
+    color: black;
+}
+#undertalePrompt .box input {
+    background: black;
+    border: 2px solid white;
+    color: white;
+    width: 60%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+#video-background {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+#video-background video {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.3;
+}
+
+
+
+
+.music-player {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.disc-container {
+  
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    perspective: 500px;
+}
+
+.disc {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(circle at 50% 50%, #f5f5f5 0%, #cccccc 40%, #222 100%);
+    border: 3px solid #111;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    animation: spin 0s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-player audio {
+    width: 200px;
+    margin-bottom: 5px;
+}
+
+.playlist button {
+    display: block;
+    margin: 3px 0;
+    padding: 5px 10px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: 0.2s;
+}
+
+.playlist button:hover {
+    background-color: #333;
+}
+
+#bgMusic {
+    width: 260px;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Converter</title>
+<link rel="stylesheet" href="conversion.css">
+  </head> 
+  
+  <div class="p3-shapes">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+  <body>
+
+<div class="music-player">
+  <div class="disc-container">
+    <div class="disc" id="disc"></div>
+  </div>
+  <audio id="bgMusic" controls autoplay loop>
+    <source src="persona1.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="playlist">
+    <button onclick="changeTrack('persona1.mp3')">When The Moon's Reaching Out Stars </button>
+    <button onclick="changeTrack('memoriesoftolop.mp3')">Memories of You</button>
+    <button onclick="changeTrack('colorNight.mp3')">Color Your Night</button>
+  </div>
+</div>
+
+
+    
+<h1>Multi Converter</h1>
+<hr>
+<label for="pick">Select Conversion Mode</label>
+<select id="pick" onchange="updateLabels()">
+<option value="cToF">Celsius to Fahrenheit</option>
+<option value="fToC">Fahrenheit to Celsius</option>
+<option value="mToF">Meter to Feet</option>
+<option value="FtoM">Feet to Meter</option>
+</select>
+
+<br><br>
+<label id="inputNum" for="inputVal">Temperature in Celsius</label>
+<input id="inputVal" type="number" placeholder="e.g. 37" oninput="convert()">
+<button onclick="clearFields()">Clear</button>
+
+<br><br>
+
+<label id="outNum" for="outVal">Temperature in Fahrenheit</label>
+<input id="outVal" type="number" readonly>
+
+<script>
+function updateLabels() 
+{
+const pick = document.getElementById('pick').value;
+const inputNum = document.getElementById('inputNum');
+const outNum = document.getElementById('outNum');
+const inputField = document.getElementById('inputVal');
+const outputField = document.getElementById('outVal');
+
+inputField.value = '';
+outputField.value = '';
+
+switch(pick) 
+{
+case 'cToF':
+inputNum.innerText = 'Temperature in Celsius';
+outNum.innerText = 'Temperature in Fahrenheit';
+inputField.placeholder = 'e.g. 37';
+break;
+
+case 'fToC':
+inputNum.innerText = 'Temperature in Fahrenheit';
+outNum.innerText = 'Temperature in Celsius';
+inputField.placeholder = 'e.g. 98.6';
+break;
+
+case 'mToF':
+inputNum.innerText = 'Length in Meters';
+outNum.innerText = 'Length in Feet';
+inputField.placeholder = 'e.g. 1.0';
+break;
+
+case 'FtoM':
+inputNum.innerText = 'Length in Feet';
+outNum.innerText = 'Length in Meters';
+inputField.placeholder = 'e.g. 5';
+break;
+}
+
+}
+
+function convert() 
+{
+const pick = document.getElementById('pick').value;
+const input = parseFloat(document.getElementById('inputVal').value);
+const outputField = document.getElementById('outVal');
+
+if(isNaN(input)) 
+{
+outputField.value = '';
+return;
+}
+
+let result;
+switch(pick) 
+{
+case 'cToF':
+result = (input * 9 / 5) + 32;
+break;
+
+case 'fToC':
+result = (input - 32) * 5 / 9;
+break;
+
+case 'mToF':
+result = input * 3.28084;
+break;
+
+case 'FtoM':
+result = input * 0.3048;
+break;
+}    
+
+outputField.value = result.toFixed(2);
+}
+
+function clearFields() 
+{
+document.getElementById('inputVal').value = '';
+document.getElementById('outVal').value = '';
+}
+
+
+const music = document.getElementById('bgMusic');
+const disc = document.getElementById('disc');
+
+music.addEventListener('play', () => {
+    disc.style.animation = "spin 4s linear infinite";
+});
+
+music.addEventListener('pause', () => {
+    disc.style.animation = "none";
+});
+
+function changeTrack(track) {
+    music.src = track;
+    music.play();
+}
+
+
+
+
+</script>
+<a href="TEMPLATE.html">Go back to main page</a>
+</body>

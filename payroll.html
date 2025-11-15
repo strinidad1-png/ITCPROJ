@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="payroll.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payroll</title>
+</head>
+<body>
+
+  <div id="video-background">
+  <video autoplay muted loop id="bg-video">
+    <source src="xenoblade.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="music-player">
+  <div class="disc-container">
+    <div class="disc" id="disc"></div>
+  </div>
+  <audio id="bgMusic" controls autoplay loop>
+    <source src="xenomain.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="playlist">
+    <button onclick="changeTrack('xenomain.mp3')">Main Theme</button>
+    <button onclick="changeTrack('beyondsky.mp3')">Beyond The Sky</button>
+    <button onclick="changeTrack('shulkandfiora.mp3')">Shulk and Fiora</button>
+  </div>
+</div>
+
+<h1>The Payroll Program</h1>
+<hr>
+<div id="container">
+<label for="employeeName" id="name">Employee Name: </label>
+<input id="employeeName" name="employeeName" type="text">
+<br>
+<label for="daysWorked" id="days">Days Worked: </label>
+<input id="daysWorked" name="daysWorked" type="number">
+<br>
+<label for="dailyRate" id="rate">Daily Rate: </label>
+<input id="dailyRate" name="dailyRate" type="number">
+<br>
+<label for="deductionAmount" id="deduct">Deduction Amount: </label>
+<input id="deductionAmount" name="deductionAmount" type="number">
+<br>
+
+<button onclick="addPayroll()">Add Payroll</button>
+<button onclick="openUndertalePrompt()">Delete Payroll</button>
+</div>
+<hr>
+
+<table id="payrollTable">
+<thead>
+<tr>
+<th>No.</th>
+<th>Employee Name</th>
+<th>Days Worked</th>
+<th>Daily Rate</th>
+<th>Gross Pay</th>
+<th>Deduction Amount</th>
+<th>Net Pay</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<!-- UNDERTALE PROMPT BOX -->
+<div id="undertalePrompt">
+  <div class="box">
+    <p>ENTER LINE NUMBER TO DELETE:</p>
+    <input type="number" id="lineInput" placeholder="Line #" />
+    <div>
+      <button onclick="confirmDelete()">DELETE</button>
+      <button onclick="closePrompt()">CANCEL</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let payrollList = [];
+
+// Add Payroll Entry
+function addPayroll() {
+  let name = document.getElementById("employeeName").value.trim();
+  let daysWorked = parseFloat(document.getElementById("daysWorked").value);
+  let dailyRate = parseFloat(document.getElementById("dailyRate").value);
+  let deduction = parseFloat(document.getElementById("deductionAmount").value);
+
+  if (!name || isNaN(daysWorked) || isNaN(dailyRate) || isNaN(deduction)) {
+    alert("Please enter valid values!");
+    return;
+  }
+
+  let grossPay = daysWorked * dailyRate;
+  let netPay = grossPay - deduction;
+
+  payrollList.push({
+    name,
+    daysWorked,
+    dailyRate,
+    grossPay,
+    deduction,
+    netPay,
+  });
+
+  displayTable();
+  clearInputs();
+}
+
+// Display Table
+function displayTable() {
+  let tbody = document.getElementById("payrollTable").getElementsByTagName("tbody")[0];
+  tbody.innerHTML = "";
+
+  payrollList.forEach((emp, index) => {
+    let row = `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${emp.name}</td>
+        <td>${emp.daysWorked}</td>
+        <td>${emp.dailyRate.toFixed(2)}</td>
+        <td>${emp.grossPay.toFixed(2)}</td>
+        <td>${emp.deduction.toFixed(2)}</td>
+        <td>${emp.netPay.toFixed(2)}</td>
+      </tr>`;
+    tbody.innerHTML += row;
+  });
+}
+
+// Clear inputs
+function clearInputs() {
+  document.getElementById("employeeName").value = "";
+  document.getElementById("daysWorked").value = "";
+  document.getElementById("dailyRate").value = "";
+  document.getElementById("deductionAmount").value = "";
+}
+
+// UNDERTALE-STYLE PROMPT FUNCTIONS
+function openUndertalePrompt() {
+  document.getElementById("undertalePrompt").style.display = "flex";
+  document.getElementById("lineInput").focus();
+}
+
+function closePrompt() {
+  document.getElementById("undertalePrompt").style.display = "none";
+  document.getElementById("lineInput").value = "";
+}
+
+function confirmDelete() {
+  let lineNumber = parseInt(document.getElementById("lineInput").value);
+
+  if (isNaN(lineNumber) || lineNumber < 1 || lineNumber > payrollList.length) {
+    alert("⚠️ Invalid line number!");
+    return;
+  }
+
+  payrollList.splice(lineNumber - 1, 1);
+  displayTable();
+  closePrompt();
+}
+
+
+const music = document.getElementById('bgMusic');
+const disc = document.getElementById('disc');
+
+music.addEventListener('play', () => {
+    disc.style.animation = "spin 4s linear infinite";
+});
+
+music.addEventListener('pause', () => {
+    disc.style.animation = "none";
+});
+
+function changeTrack(track) {
+    music.src = track;
+    music.play();
+}
+
+
+
+
+</script>
+
+<a href="TEMPLATE.html">Go back to main page</a>
+</body>
+</html>
